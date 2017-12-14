@@ -39,3 +39,25 @@
     debug: var=webserverfloatingip.floating_ip.floating_ip_address
   - name: Show webserver private IP
     debug: var=webserverip.openstack.private_v4
+
+- hosts: jumpbox
+  gather_facts: false
+  tasks:
+   - name: Fetch Instance Info
+     os_server_facts:
+      cloud: ospcloud
+      region_name: RegionOne
+     register: result
+     
+   - name: Add host to
+     add_host:
+      name: "{{ item.public_v4 }}"
+      group: "{{ item.metadata.group }}"
+     with_items: "{{result.ansible_facts.openstack_servers}}"
+   - name: Add host
+     add_host:
+      name: "{{ item.public_v4 }}"
+      group: "{{ item.metadata.deployment_name }}"
+     with_items: "{{result.ansible_facts.openstack_servers}}"
+   - debug: 
+      var: "{{hostvars}}"
