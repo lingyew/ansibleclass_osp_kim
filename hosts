@@ -1,7 +1,5 @@
 [all:vars]
-GUID=c16d
-
-[internal:vars]
+GUID=1a04
 
 ###########################################################################
 ### Ansible Vars
@@ -10,21 +8,52 @@ timeout=60
 ansible_become=yes
 ansible_ssh_user=ec2-user
 
+
 [internal:children]
+towers
 frontends
 apps
 appdbs
+windows
+support
+
+[towers]
+## These are the towers
+tower1."{{ GUID }}".internal public_host_name=tower1."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
+tower2."{{ GUID }}".internal public_host_name=tower2."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
+tower3."{{ GUID }}".internal public_host_name=tower3."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
 
 [frontends]
 ## These are the frontends
-frontend1 ansible_host=frontend1."{{ GUID }}".internal
+frontend1 ansible_host=frontend1."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
 
 [apps]
 ## These are the apps
-app1 ansible_host=app1."{{ GUID }}".internal
-app2 ansible_host=app2."{{ GUID }}".internal
+app1."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
+app2."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
 
 [appdbs]
-## These are the appdbi(s)
-appdb1 ansible_host=appdb1."{{ GUID }}".internal
+## These are the appdbs
+appdb1."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
+
+[windows]
+## These are the activedirectory servers
+ad1."{{ GUID }}".internal ssh_host=ad1."{{ GUID }}".example.opentlc.com ansible_password=jVMijRwLbI02gFCo2xkjlZ9lxEA7bm7zgg==
+
+
+## These are the supporthosts
+[support]
+support1."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
+support2."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
+
+[windows:vars]
+ansible_connection=winrm
+ansible_port=5986
+ansible_ssh_port=5986
+ansible_user=Administrator
+ansible_ssh_user=Administrator
+ansible_winrm_server_cert_validation=ignore
+ansible_winrm_transport=basic
+ansible_become=false
+
 
