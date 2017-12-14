@@ -1,6 +1,8 @@
 [all:vars]
 GUID=1a04
 
+[internal:vars]
+
 ###########################################################################
 ### Ansible Vars
 ###########################################################################
@@ -8,42 +10,24 @@ timeout=60
 ansible_become=yes
 ansible_ssh_user=ec2-user
 
-
 [internal:children]
-towers
 frontends
 apps
 appdbs
-windows
-support
 
 [frontends]
 ## These are the frontends
 frontend1 ansible_host=frontend1."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
 
+
 [apps]
 ## These are the apps
-app1."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
-app2."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
+app1 ansible_host=app1."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
+app2 ansible_host=app2."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
 
 [appdbs]
-## These are the appdbs
-appdb1."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
+## These are the appdbi(s)
+appdb1 ansible_host=appdb1."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
 
-
-## These are the supporthosts
-[support]
-support1."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
-support2."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
-
-[windows:vars]
-ansible_connection=winrm
-ansible_port=5986
-ansible_ssh_port=5986
-ansible_user=Administrator
-ansible_ssh_user=Administrator
-ansible_winrm_server_cert_validation=ignore
-ansible_winrm_transport=basic
-ansible_become=false
-
-
+[appserver:children]
+apps
