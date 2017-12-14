@@ -1,49 +1,25 @@
 ---
-- hosts: jumpbox
-  gather_facts: false
-  tasks:
-   - name: Fetch Instance Info
-     os_server_facts:
-      cloud: ospcloud
-      region_name: RegionOne
-     register: result
-   - name: Add host to
-     add_host:
-      name: "{{ item.public_v4 }}"
-      group: "{{ item.metadata.group }}"
-     with_items: "{{result.ansible_facts.openstack_servers}}"
-   - name: Add host
-     add_host:
-      name: "{{ item.public_v4 }}"
-      group: "{{ item.metadata.deployment_name }}"
-     with_items: "{{result.ansible_facts.openstack_servers}}"
-   - debug: 
-      var: "{{hostvars}}"
 
-   - pause:
-       minutes: 5
-
-
-- hosts: dev
+- hosts: all
   gather_facts: false
   become: yes
   roles:
     - repos
 
-- hosts: frontendserver
+- hosts: frontends
   gather_facts: false
   become: yes
   roles:
     - haproxy
 
-- hosts: appserver
+- hosts: apps
   gather_facts: false
   become: yes
   roles:
     - tomcat
     - apache
 
-- hosts: databaseservers
+- hosts: appdbs
   gather_facts: false
   become: yes
   roles:
