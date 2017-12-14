@@ -1,0 +1,34 @@
+---
+
+- name: Enable repos
+  hosts: all
+  gather_facts: false
+  roles:
+    - repos
+
+- name: Apply haproxy and apache to frontends
+  hosts: frontends
+  gather_facts: false
+  roles:
+    - haproxy
+
+
+
+- name: apply common configuration to all nodes
+  hosts: appdbs
+  gather_facts: false
+  roles:
+    - postgresql
+
+
+- name: deploy apache
+  hosts: apps
+  gather_facts: false
+  roles:
+    - apache
+
+- name: deploy tomcat
+  hosts: apps
+  gather_facts: false
+  roles:
+    - tomcat

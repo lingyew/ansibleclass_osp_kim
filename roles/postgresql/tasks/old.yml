@@ -1,0 +1,11 @@
+---
+- Name: Deploy postgresql
+  package:
+    name: postgresql-server
+    state: latest
+
+- name: Enable postgresql at boot and Start postgresql service
+  service:
+    name: postgresql
+    state: started
+    enabled: yes
