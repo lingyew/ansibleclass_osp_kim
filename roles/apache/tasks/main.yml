@@ -10,3 +10,5 @@
     name: httpd
     enabled: yes
     state: started
+
+- uri: url=http://localhost
