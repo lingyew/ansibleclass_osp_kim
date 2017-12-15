@@ -7,6 +7,6 @@
   tasks:
     - os_server:
         cloud: ospcloud
-        server: app1
+        name: app1
         state: absent
       register: deleteosp
