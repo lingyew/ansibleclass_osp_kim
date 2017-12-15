@@ -20,7 +20,7 @@
   roles:
     - tomcat
     - apache
-  uri: url=http://localhost
+
 
 - hosts: appdbs
   gather_facts: false

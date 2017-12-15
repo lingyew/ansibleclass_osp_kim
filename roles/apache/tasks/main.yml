@@ -11,4 +11,7 @@
     enabled: yes
     state: started
 
-- uri: url=http://localhost
+- uri:
+    url: http://localhost
+    return_content: yes
+  register: webpage
