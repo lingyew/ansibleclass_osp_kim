@@ -1,0 +1,9 @@
+---
+- name: test URL
+  hosts: frontends
+  gather_facts: false
+  become: true
+  tasks:
+  - uri:
+      url: http://localhost
+      return_content: yes
