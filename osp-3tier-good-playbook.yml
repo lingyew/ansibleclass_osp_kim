@@ -12,6 +12,7 @@
   become: yes
   roles:
     - haproxy
+  tags: tested     
 
 
 - hosts: apps
@@ -20,12 +21,18 @@
   roles:
     - tomcat
     - apache
-
+  tags: tested 
 
 - hosts: appdbs
   gather_facts: false
   become: yes
   roles:
     - postgresql
+  tags: tested 
 
 
+- hosts: apps
+  uri:
+    url: http://localhost
+    return_content: yes
+  register: webpage
