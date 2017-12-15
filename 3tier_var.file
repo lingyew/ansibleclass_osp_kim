@@ -5,3 +5,10 @@
    - { server_name: 'app1', webserver_group: 'appserver', deployment: 'dev', flavor_name: 'm2.small'}
    - { server_name: 'app2', webserver_group: 'appserver', deployment: 'dev', flavor_name: 'm2.small'}
    - { server_name: 'db1', webserver_group: 'databaseservers', deployment: 'dev', flavor_name: 'm2.small'}
+
+
+ servers_delete:
+   - { server_del: 'frontend'}
+   - { server_del: 'app1'}
+   - { server_del: 'app2'}
+   - { server_del: 'db1'}
