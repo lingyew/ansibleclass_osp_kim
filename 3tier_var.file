@@ -1,10 +1,10 @@
 ---
 # vars file for osp 3tier application
  servers:
-   - { server_name: 'frontend', webserver_group: 'frontendserver', deployment: 'dev', flavor_name: 'm2.small'}
-   - { server_name: 'app1', webserver_group: 'appserver', deployment: 'dev', flavor_name: 'm2.small'}
-   - { server_name: 'app2', webserver_group: 'appserver', deployment: 'dev', flavor_name: 'm2.small'}
-   - { server_name: 'db1', webserver_group: 'databaseservers', deployment: 'dev', flavor_name: 'm2.small'}
+   - { server_name: 'frontend', webserver_group: 'frontends', deployment: 'dev', flavor_name: 'm2.small'}
+   - { server_name: 'app1', webserver_group: 'apps', deployment: 'dev', flavor_name: 'm2.small'}
+   - { server_name: 'app2', webserver_group: 'apps', deployment: 'dev', flavor_name: 'm2.small'}
+   - { server_name: 'db1', webserver_group: 'appdbs', deployment: 'dev', flavor_name: 'm2.small'}
 
 
  servers_delete:
