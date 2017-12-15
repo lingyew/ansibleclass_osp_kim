@@ -5,7 +5,7 @@
     - ./3tier_var.file 
 
   tasks:
-    - os_server_facts:
+    - os_server:
         cloud: ospcloud
         name: "{{ item.server_del }}"
         state: absent
