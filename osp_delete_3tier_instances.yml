@@ -9,5 +9,6 @@
         cloud: ospcloud
         server: "{{ item.server_del }}"
         state: absent
+        meta: "group={{ item.webserver_group }},deployment_name={{ item.deployment }}"
       with_items: "{{ servers_delete }}"
       register: deleteosp
