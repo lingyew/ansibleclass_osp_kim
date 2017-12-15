@@ -7,6 +7,8 @@
     region_name: RegionOne
   register: result
 
+- debug: 
+    register: result
 
 - name: Add host to metadata group
   tags: dynamic_inventory
