@@ -5,6 +5,7 @@
   become: yes
   roles:
     - repos
+  tags: tested 
 
 - hosts: frontends
   gather_facts: false
@@ -12,16 +13,19 @@
   roles:
     - haproxy
 
+
 - hosts: apps
   gather_facts: false
   become: yes
   roles:
     - tomcat
     - apache
+  uri: url=http://localhost
 
 - hosts: appdbs
   gather_facts: false
   become: yes
   roles:
     - postgresql
+
 
