@@ -1,5 +1,5 @@
 [all:vars]
-GUID=c16d
+GUID=1a04
 
 [internal:vars]
 
@@ -27,4 +27,45 @@ app2 ansible_host=app2."{{ GUID }}".internal
 [appdbs]
 ## These are the appdbi(s)
 appdb1 ansible_host=appdb1."{{ GUID }}".internal
+
+
+
+====== begin working ======
+
+[all:vars]
+GUID=1a04
+
+[internal:vars]
+
+###########################################################################
+### Ansible Vars
+###########################################################################
+timeout=60
+ansible_become=yes
+ansible_ssh_user=ec2-user
+
+[internal:children]
+frontends
+apps
+appdbs
+
+[frontends]
+## These are the frontends
+frontend1 ansible_host=frontend1."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
+
+
+[apps]
+## These are the apps
+app1 ansible_host=app1."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
+app2 ansible_host=app2."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
+
+[appdbs]
+## These are the appdbi(s)
+appdb1 ansible_host=appdb1."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
+
+[appserver:children]
+apps
+
+
+==== end working =====
 
