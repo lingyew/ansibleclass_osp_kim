@@ -8,6 +8,6 @@
     - os_server_facts:
         cloud: ospcloud
         state: absent
-        server: "{{ item.server_name }}"
+        server: "{{ item.server_del }}"
       with_items: "{{ servers_delete }}"
       register: deleteosp
