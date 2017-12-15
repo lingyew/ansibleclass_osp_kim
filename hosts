@@ -1,5 +1,5 @@
-[all:vars]
-GUID=071f
+all:vars]
+
 
 [internal:vars]
 
@@ -17,16 +17,20 @@ appdbs
 
 [frontends]
 ## These are the frontends
-frontend1 ansible_host=frontend1."{{ GUID }}".internal
+frontend1 ansible_host=frontend."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
+
 
 [apps]
 ## These are the apps
-app1 ansible_host=app1."{{ GUID }}".internal
-app2 ansible_host=app2."{{ GUID }}".internal
+app1 ansible_host=app1."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
+app2 ansible_host=app2."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
 
 [appdbs]
 ## These are the appdbi(s)
-appdb1 ansible_host=appdb1."{{ GUID }}".internal
+appdb1 ansible_host=appdb1."{{ GUID }}".example.opentlc.com ansible_ssh_user=ec2-user
+
+[appserver:children]
+apps
 
 
 
