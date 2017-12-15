@@ -1,0 +1,13 @@
+- name: Delete the 3-tier instances on OSP
+  hosts: jumpbox
+  gather_facts: false
+  vars_files:
+    - ./3tier_var.file 
+    
+  tasks:
+    - os_server_facts:
+        cloud: ospcloud
+        state: absent
+        server: "{{ item.server_name }}"
+      with_items: "{{ servers }}"
+      register: deleteosp
