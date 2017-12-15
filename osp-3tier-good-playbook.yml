@@ -30,8 +30,8 @@
     - postgresql
   tags: tested 
 
-- name: test URI
-  hosts: apps
+- name: test URL
+  hosts: frontends
   gather_facts: false
   become: true
   tasks:
