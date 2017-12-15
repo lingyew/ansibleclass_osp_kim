@@ -32,7 +32,8 @@
 
 
 - hosts: apps
-  uri:
-    url: http://localhost
-    return_content: yes
+  tasks:
+    uri:
+      url: http://localhost
+      return_content: yes
 
