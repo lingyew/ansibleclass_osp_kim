@@ -30,10 +30,12 @@
     - postgresql
   tags: tested 
 
-
-- hosts: apps
+- name: test URI
+  hosts: apps
+  gather_facts: false
+  become: true
   tasks:
-    uri:
+  - uri:
       url: http://localhost
       return_content: yes
 
